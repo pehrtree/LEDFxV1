@@ -3,13 +3,14 @@
 #include "LEDFx.h"
 
 #define NUM_LEDS 128
-#define LED_PIN 8
-LEDFxLib LEDFx(NUM_LEDS);
-WS2811Controller800Mhz<LED_PIN> fastSPI;
+#define DATA_PIN 2
+#define CLOCK_PIN 3
 
-#define TOP_SIZE 6
-#define MID_SIZE 13
-#define BOTTOM_SIZE 9*3
+LEDFxLib LEDFx(NUM_LEDS);
+
+#define TOP_SIZE 2
+#define MID_SIZE 2
+#define BOTTOM_SIZE 8
 #define BOTTOM_ORIGIN TOP_SIZE*2+MID_SIZE*2
 #define NUM_LOCATIONS 6
 pRGB buffer[NUM_LEDS];
@@ -41,8 +42,8 @@ void setup()
 
 
 	// setup the light strip. 
-	fastSPI.init();
-	fastSPI.showRGB((byte*)buffer, NUM_LEDS);
+         FastLED.addLeds<WS2801, DATA_PIN, CLOCK_PIN, RGB>(buffer, NUM_LEDS);
+	
 
 	// initialize the LED library.
 	LEDFx.init(buffer);
@@ -69,7 +70,7 @@ void loop()
 	updateData();
 
 	if(LEDFx.update())
-		fastSPI.showRGB((byte*)buffer, NUM_LEDS);
+              FastLED.show();
 }
 
 void updateData() {

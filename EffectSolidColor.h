@@ -6,16 +6,16 @@
 class EffectSolidColor : public LEDEffect
 {
 private:
-  RGB baseColor;
+  pRGB baseColor;
 public:
 	void copyArgs(char * buffer, va_list args);
-  void setColor(RGB c);
-  RGB getColor();
+  void setColor(pRGB c);
+  pRGB getColor();
   // create an empty solid color effect. All LEDs dark
   EffectSolidColor ();
   // Create a solid color effect for the specified color
-  EffectSolidColor (RGB baseColor);
-  virtual RGB getPixel (uint32_t runTime, uint16_t currentFrame, uint16_t pixelNum);
+  EffectSolidColor (pRGB baseColor);
+  virtual pRGB getPixel (uint32_t runTime, uint16_t currentFrame, uint16_t pixelNum);
   virtual void setArgs(char* buffer);
 };
 

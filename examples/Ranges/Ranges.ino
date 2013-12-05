@@ -12,7 +12,7 @@ WS2811Controller800Mhz<LED_PIN> fastSPI;
 #define BOTTOM_SIZE 9*3
 #define BOTTOM_ORIGIN TOP_SIZE*2+MID_SIZE*2
 #define NUM_LOCATIONS 6
-RGB buffer[NUM_LEDS];
+pRGB buffer[NUM_LEDS];
 enum Locations
 {
 	// 0b000001

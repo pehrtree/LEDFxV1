@@ -1,14 +1,13 @@
-#include "FastSPI_LED2.h"
 #include "SPI.h"
-#define LEDLIB_GRB_ORDER  1       // GRB leds
 #include "LEDFx.h"
+#include "FastSPI_LED2.h"
+#define DATA_PIN 2
+#define CLOCK_PIN 3
 
-const int LED_COUNT = 128;
-const int REEDPIN = 2;
-const int LED_PIN1 = 8;
-WS2811Controller800Mhz<LED_PIN1> fastSpi;
+const int LED_COUNT = 20;
+const int REEDPIN = 5;
 LEDFxLib ledFx(LED_COUNT);
-RGB buffer[LED_COUNT];
+pRGB buffer[LED_COUNT];
 EffectProgressBar progress(cRGB(0,255,0),cRGB(255,0,0));
 EffectSolidColor color(cRGB(0,0,255));
 
@@ -25,7 +24,8 @@ void setup() {
   Serial.begin(9600);
   circumference = 2.0 * PI * (DIAMETER_INCH/2.0);
   pinMode(REEDPIN, INPUT_PULLUP);
-  fastSpi.init();
+  FastLED.addLeds<WS2801, DATA_PIN, CLOCK_PIN, RGB>(buffer, LED_COUNT);
+
   ledFx.init(buffer);
   ledFx.setCurrentEffect(progress);
 }
@@ -34,6 +34,7 @@ void setup() {
   static boolean rotated = false;
   static float velocity = 0.0;
 	static int lightNum = 0;
+unsigned long ts=0;
 void loop() {
   if(digitalRead(REEDPIN) == HIGH) {
     rotated = true;
@@ -43,7 +44,7 @@ void loop() {
     }
   }
   // ensure that the wheel has rotated since the last velocity update.
-  else if(rotated) {
+  else if( rotated) {
     unsigned long thisTick = millis();
     unsigned long tDelta = thisTick - lastTick;
     // in inches/sec
@@ -51,14 +52,14 @@ void loop() {
     
     lastTick = thisTick;
     rotated = false;
-	  uint8_t lightNum = map(cV, MIN_SPEED,MAX_SPEED,0,255);
-	  progress.setValue(lightNum);
+    uint8_t lightNum = map(velocity, MIN_SPEED,MAX_SPEED,0,255);
+    progress.setValue(lightNum);
   }
-
+  
+   
   if(ledFx.update())
-	  fastSpi.showRGB((byte*)buffer, LED_COUNT);
+	  FastLED.show();
 }
-
 
 
 

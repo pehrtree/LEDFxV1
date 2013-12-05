@@ -3,7 +3,7 @@
 #include "new.h"
 #endif
 
-RGB EMPTY_COLOR = {0,0,0};
+pRGB EMPTY_COLOR(0,0,0);
 
 LEDFxLib::LEDFxLib(uint16_t ledNum) : 
 	ledNum(ledNum),
@@ -20,7 +20,7 @@ void LEDFxLib::clear() {
 }
 
 // Initializes the library. You _must_ have initialized fastSPI before this call!
-void LEDFxLib::init(RGB* leds)
+void LEDFxLib::init(pRGB* leds)
 {
 	this->leds = leds; 
 	currentList.clear();

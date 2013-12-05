@@ -14,7 +14,7 @@ void EffectRandomPixels::setFrame (uint16_t frameNumber, RangeInfoList * context
 }
 
 
-RGB EffectRandomPixels::getPixel (uint32_t runTime, uint16_t currentFrame, uint16_t pixelNum)  {
+pRGB EffectRandomPixels::getPixel (uint32_t runTime, uint16_t currentFrame, uint16_t pixelNum)  {
   if(useSatAndVal)
     return LEDFxUtilities::randomColor(sat,val);
   else

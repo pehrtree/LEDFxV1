@@ -1,16 +1,17 @@
-#define LEDLIB_GRB_ORDER
-#include <LEDFx.h>
 #include <FastSPI_LED2.h>
+#include <LEDFx.h>
+
 #define NUM_LEDS 20
-LPD8806Controller<11, 13, 10> LED;
-RGB buffer[NUM_LEDS];
+#define DATA_PIN 3
+#define CLOCK_PIN 3
+pRGB buffer[NUM_LEDS];
 LEDFxLib ledFx(NUM_LEDS);
 EffectRandomPixels rndm;
 
 void setup()
 {
 	// Initialize fastSPI
-	LED.init();
+        FastLED.addLeds<WS2801, DATA_PIN, CLOCK_PIN, RGB>(buffer, NUM_LEDS);
 	// Initialize LEDFx
 	ledFx.init(buffer);
 	// Set the hue and saturation
@@ -19,10 +20,12 @@ void setup()
 	rndm.setFramerate(8);
 	// Set the current effect
 	ledFx.setCurrentEffect(rndm);
+
+
 }
 
 void loop()
 {
 	if(ledFx.update())
-		LED.showRGB((byte*)buffer, NUM_LEDS );
+		FastLED.show();
 }

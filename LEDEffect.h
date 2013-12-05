@@ -51,8 +51,8 @@ public:
   virtual void setFrame (uint16_t currentFrame, RangeInfoList * context);
   void cloneTo (LEDEffect * clone);
   // returns the effect for the current frame number at the specified pixel
-  virtual RGB getPixel (uint32_t runTime, uint16_t currentFrame, uint16_t pixelNum)  {return cRGB(0,0,0);};
-  bool update(uint32_t runTime, RGB* buffer, RangeInfoList * context);
+  virtual pRGB getPixel (uint32_t runTime, uint16_t currentFrame, uint16_t pixelNum)  {return cRGB(0,0,0);};
+  bool update(uint32_t runTime, pRGB* buffer, RangeInfoList * context);
   virtual void setArgs(char* args) = 0;
   virtual void copyArgs(char * buffer, va_list args) = 0;
 

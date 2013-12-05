@@ -18,7 +18,7 @@ public:
   // specify a particular saturation and luminosity value that should be used
   // when selecting random pixels.
   void setProperties(uint8_t saturation, uint8_t value);
-  virtual RGB getPixel (uint32_t runTime, uint16_t currentFrame, uint16_t pixelNum);
+  virtual pRGB getPixel (uint32_t runTime, uint16_t currentFrame, uint16_t pixelNum);
   virtual void setArgs(char* buffer);
 };
 

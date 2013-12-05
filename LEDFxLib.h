@@ -18,7 +18,7 @@
 */
 class LEDFxLib {
 private:
-	struct RGB *leds;
+	pRGB *leds;
 	RangeInfoList currentList;
 	uint16_t ledNum;
 
@@ -29,7 +29,7 @@ public:
 	// removes all of the associated effects.
 	void clear();
 	// Initializes the library. You _must_ have initialized fastSPI before this call!
-	void init(RGB * leds);
+	void init(pRGB * leds);
 
 	//defines a range with the specified identifier in the specified location
 	// use this identifier elsewhere to 

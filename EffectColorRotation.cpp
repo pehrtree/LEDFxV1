@@ -55,14 +55,14 @@ void EffectColorRotation::setFrame (uint16_t currentFrame, RangeInfoList * conte
 
 	}
 }
-RGB EffectColorRotation::getNextColor() {
+pRGB EffectColorRotation::getNextColor() {
 	if(useSatAndVal)
 		return LEDFxUtilities::randomColor(sat,val);
 	else
 		return LEDFxUtilities::randomColor();
 }
 
-RGB EffectColorRotation::getPixel (uint32_t runTime, uint16_t currentFrame, uint16_t pixelNum) {
+pRGB EffectColorRotation::getPixel (uint32_t runTime, uint16_t currentFrame, uint16_t pixelNum) {
 	return currentColor;
 }
 

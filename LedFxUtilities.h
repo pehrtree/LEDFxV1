@@ -12,23 +12,23 @@
 
 class LEDFxUtilities { 
 public:
-static RGB interpolate(RGB from, RGB to, float scale) {
-  RGB retVal;
+static pRGB interpolate(pRGB from, pRGB to, float scale) {
+  pRGB retVal;
   retVal.r = from.r + ((float)(to.r - from.r) * scale);
 	retVal.g = from.g + ((float)(to.g - from.g) * scale);
 	retVal.b = from.b + ((float)(to.b - from.b) * scale);
   return retVal;
 
 }
-static RGB randomColor() {
+static pRGB randomColor() {
     return cRGB(random(1,255),random(1,255),random(1,255));
   }
 
-static RGB randomColor(uint8_t s,uint8_t v) {
+static pRGB randomColor(uint8_t s,uint8_t v) {
   return HSVtoRGB(random(0,256),s,v);
 }
 
-static void RGBToHSV(RGB rgb, uint8_t & h, uint8_t & s, uint8_t v) {
+static void pRGBToHSV(pRGB rgb, uint8_t & h, uint8_t & s, uint8_t v) {
 	uint8_t M = max(max(rgb.r,rgb.g),rgb.b);
 	uint8_t m = min(min(rgb.r,rgb.g),rgb.b);
 	int C = M-m;
@@ -51,8 +51,8 @@ static void RGBToHSV(RGB rgb, uint8_t & h, uint8_t & s, uint8_t v) {
 	}
 
 }
-// converts hue, saturation, value to RGB
-static RGB HSVtoRGB(uint8_t  h, uint8_t s,  uint8_t v) {
+// converts hue, saturation, value to pRGB
+static pRGB HSVtoRGB(uint8_t  h, uint8_t s,  uint8_t v) {
   uint8_t h_i = h/42.5;
   uint16_t c = (s*v)/255;
   int m = v - c;

@@ -10,14 +10,14 @@ EffectSineWave::EffectSineWave ()
 	this->cyclePi = PI * 4.0;
 	this->offset = 0;
 }
-EffectSineWave::EffectSineWave (RGB baseColor, RGB destColor, uint16_t cycles)
+EffectSineWave::EffectSineWave (pRGB baseColor, pRGB destColor, uint16_t cycles)
 {
 	this->cyclePi = 2* PI * (float)cycles;
 	this->offset = offset;
 	setColor(baseColor,destColor);
 }
 
-void EffectSineWave::setColor(RGB baseColor, RGB  destColor) {
+void EffectSineWave::setColor(pRGB baseColor, pRGB  destColor) {
 	this->baseColor = baseColor;
 	this->destColor = destColor;
 }
@@ -29,9 +29,9 @@ void EffectSineWave::setFrame(uint16_t frameNumber, RangeInfoList * context)
 	this->offset = context->offset;
 }
 
-RGB EffectSineWave::getPixel (uint32_t runTime, uint16_t currentFrame, uint16_t pixelNum)
+pRGB EffectSineWave::getPixel (uint32_t runTime, uint16_t currentFrame, uint16_t pixelNum)
 {
-	RGB retVal;
+	pRGB retVal;
 	currentFrame %= (uint16_t)numLeds;
 
 	y = sin(cyclePi * (float)((currentFrame +offset)+ pixelNum) / (float)numLeds);
@@ -52,16 +52,16 @@ RGB EffectSineWave::getPixel (uint32_t runTime, uint16_t currentFrame, uint16_t 
 
 void EffectSineWave::copyArgs(char * buffer, va_list args) {
 	// baseColor
-	ARG_TO(buffer,args,RGB);
+	ARG_TO(buffer,args,pRGB);
 	// destColor
-	ARG_TO(buffer,args,RGB);
+	ARG_TO(buffer,args,pRGB);
 	// cyclePi
 	ARG_TO(buffer,args,unsigned int);
 }
 
 void EffectSineWave::setArgs(char* buffer) {
-	baseColor = ARG_FROM(buffer,RGB);
-	destColor = ARG_FROM(buffer,RGB);
+	baseColor = ARG_FROM(buffer,pRGB);
+	destColor = ARG_FROM(buffer,pRGB);
 	cyclePi = ARG_FROM(buffer,unsigned int);
 };
 

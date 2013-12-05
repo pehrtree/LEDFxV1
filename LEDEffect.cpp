@@ -27,7 +27,7 @@ void LEDEffect::setFrame (uint16_t currentFrame, RangeInfoList* context)
 }
 
 
-bool LEDEffect::update(uint32_t runTime, RGB* buffer, RangeInfoList * context)  {
+bool LEDEffect::update(uint32_t runTime, pRGB* buffer, RangeInfoList * context)  {
 	if((runTime - context->lastRefreshTime) > this->waitTime) {
 		if(frameOrder == FRAME_ORDER_SEQUENTIAL) {
 			setFrame(context->refreshCount, context);
@@ -36,7 +36,7 @@ bool LEDEffect::update(uint32_t runTime, RGB* buffer, RangeInfoList * context)  
 			setFrame((runTime - context->startTime) / this->waitTime, context);
 		}
 		for(int i = 0; i < context->size; i++) {
-			RGB val = getPixel(runTime, currentFrame, i);
+			pRGB val = getPixel(runTime, currentFrame, i);
 			buffer[i+context->offset] = val;
 		}
 		return true;

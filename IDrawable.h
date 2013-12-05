@@ -16,7 +16,7 @@ class IDrawable
 {
  public:
 	virtual void copyArgs(char * buffer, va_list args) = 0;
-	virtual bool update(uint32_t runTime, RGB* buffer, RangeInfoList* context) = 0;
+	virtual bool update(uint32_t runTime, pRGB* buffer, RangeInfoList* context) = 0;
 };
 
 

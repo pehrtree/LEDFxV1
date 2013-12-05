@@ -6,16 +6,16 @@
 class EffectColorRotation : public LEDEffect
 {
 private:
-  RGB currentColor;
-  RGB nextColor;
+  pRGB currentColor;
+  pRGB nextColor;
   uint16_t frameDuration;
   uint16_t fadeDuration;
   uint32_t lastChange;
-  RGB randomColor();
+  pRGB randomColor();
   bool useSatAndVal;
   uint8_t val;
   uint8_t sat;
-  RGB getNextColor();
+  pRGB getNextColor();
 public:
   void copyArgs(char * buffer, va_list args);
   // create an empty color gradient effect. All LEDs dark
@@ -28,7 +28,7 @@ public:
   // specify a particular saturation and luminosity value that should be used
   // when selecting random pixels.
   void setSaturationAndValue(uint8_t saturation, uint8_t value);
-  virtual RGB getPixel (uint32_t runTime, uint16_t currentFrame, uint16_t pixelNum);
+  virtual pRGB getPixel (uint32_t runTime, uint16_t currentFrame, uint16_t pixelNum);
   void reset();
   virtual void setArgs(char* buffer);
 };

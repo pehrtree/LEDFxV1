@@ -24,7 +24,7 @@ EffectRainbow::EffectRainbow ()
 	this->value = 255;
 }
 
-RGB EffectRainbow::getPixel (uint32_t runTime, uint16_t currentFrame, uint16_t pixelNum)
+pRGB EffectRainbow::getPixel (uint32_t runTime, uint16_t currentFrame, uint16_t pixelNum)
 {
 	uint8_t h = map((currentFrame + pixelNum) % rainbowWidth,0,rainbowWidth,0,255);
 	return LEDFxUtilities::HSVtoRGB(h, saturation, value);

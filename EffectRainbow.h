@@ -17,7 +17,7 @@ public:
 	void setProperties(uint16_t rainbowWidth, uint8_t saturation, uint8_t value, bool reverse);
 	bool isReversed();
 	uint16_t getRainbowWidth();
-	virtual RGB getPixel (uint32_t runTime, uint16_t currentFrame, uint16_t pixelNum);
+	virtual pRGB getPixel (uint32_t runTime, uint16_t currentFrame, uint16_t pixelNum);
 	virtual void setArgs(char* buffer);
 
 };
